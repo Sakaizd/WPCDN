@@ -23,22 +23,22 @@ class Single(object):
     self.hash = hasher.hexdigest()
     self.jpeg = 'jpeg/' + self.hash + '.jpeg'
     self.webp = 'webp/' + self.hash + '.webp'
-    self.jpeg_th = 'jpeg/' + self.hash + '.th.jpeg'
-    self.webp_th = 'webp/' + self.hash + '.th.webp'
+    # self.jpeg_th = 'jpeg/' + self.hash + '.th.jpeg'
+    # self.webp_th = 'webp/' + self.hash + '.th.webp'
 
   def optimize(self):
     im = Image.open('gallary/' + self.file).convert('RGB')
     im.save(self.jpeg, 'JPEG') # todo: TinyPNG API
     im.save(self.webp, 'WEBP')
     im.thumbnail((640, 360))
-    im.save(self.jpeg_th, 'JPEG')  # todo: TinyPNG API
-    im.save(self.webp_th, 'WEBP')
+    # im.save(self.jpeg_th, 'JPEG')  # todo: TinyPNG API
+    # im.save(self.webp_th, 'WEBP')
 
   def manifest(self):
     self.mani[self.hash] = {
       'source': self.file,
-      'jpeg': [self.jpeg, self.jpeg_th],
-      'webp': [self.webp, self.webp_th]
+      'jpeg': [self.jpeg],
+      'webp': [self.webp]
     }
 
   def main(self):
